@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>مركز الجبيل 1 - جامعة الملك فيصل</title>
+    <style>
+        :root {
+            --gold: #c79c48;
+            --teal: #0b6a70;
+            --light-bg: #f5f5f5;
+        }
+
+        body {
+            font-family: "Tahoma", system-ui, sans-serif;
+            background: var(--light-bg);
+            margin: 0;
+        }
+
+        /* ========== الشريط العلوي ========== */
+        .header-bar {
+            position: relative;
+            background: linear-gradient(135deg, #0b6a70, #145c63);
+            color: #fff;
+            padding: 25px 30px;
+            text-align: center;
+        }
+
+        /* شعار الجامعة */
+        .logo-wrapper {
+            position: absolute;
+            right: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .logo-wrapper img {
+            height: 110px;
+            width: auto;
+        }
+
+        .center-name {
+            font-size: 2.4rem;
+            font-weight: 800;
+            margin-bottom: 4px;
+        }
+
+        .center-code {
+            font-size: 1.55rem; /* ← مكبّر قليلاً */
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .datetime-row {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        /* ========== الإطار الذهبي ========== */
+        .content {
+            max-width: 1000px;
+            margin: 25px auto 40px;
+            background: #fff;
+            padding: 20px 25px 35px;
+            border-radius: 18px;
+            border: 3px solid var(--gold);
+            box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+            position: relative;
+        }
+
+        /* ========== مستطيل رمز المراقب ========== */
+        .proctor-box {
+            position: absolute;
+
+            /* نفس مكان الرسم الذي اخترته */
+            right: -240px;
+            top: 40px;
+
+            width: 200px;
+            padding: 12px 15px;
+            background: #fff;
+            border: 3px solid var(--teal);
+            border-radius: 12px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.15);
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .proctor-title {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--teal);
+            margin-bottom: 4px;
+        }
+
+        .proctor-number-display {
+            width: 100%;
+            padding: 25px 0;
+            border: 2px solid var(--teal);
+            border-radius: 8px;
+            text-align: center;
+            font-size: 3.8rem;
+            font-weight: 900;
+            color: var(--teal);
+            background: #fafafa;
+        }
+
+        .proctor-box select {
+            width: 90%;
+            font-size: 1.2rem;
+            padding: 6px 10px;
+            border-radius: 8px;
+            border: 2px solid var(--teal);
+            background: #fff;
+            cursor: pointer;
+        }
+
+        /* ========== مربعات المقررات ========== */
+        .course-box {
+            border: 2px solid var(--teal);
+            padding: 16px 18px;
+            border-radius: 12px;
+            margin-top: 22px;
+            background: #fafafa;
+        }
+
+        .course-box label {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: var(--teal);
+        }
+
+        .line {
+            margin-top: 6px;
+            height: 32px;
+            border-bottom: 2px solid #000;
+        }
+
+        .cnr-label {
+            font-size: 1.05rem;
+            font-weight: bold;
+            color: var(--teal);
+            margin-top: 16px;
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="header-bar">
+    <div class="center-name">اسم المركز: الجبيل ١</div>
+    <div class="center-code">رمز مركز الاختبار: ٣١٠١</div>
+
+    <div class="datetime-row">
+        <span id="dayValue"></span>
+        <span id="dateValue"></span>
+        <span id="timeValue"></span>
+    </div>
+
+    <div class="logo-wrapper">
+        <img src="KFU_logo_white.png" alt="شعار جامعة الملك فيصل">
+    </div>
+</header>
+
+<div class="content">
+
+    <!-- مستطيل رمز المراقب -->
+    <div class="proctor-box">
+        <div class="proctor-title">رمز المراقب</div>
+
+        <div id="proctorDisplay" class="proctor-number-display">--</div>
+
+        <select id="proctorCodeSelect">
+            <option value="">اختر</option>
+            <option>٠١</option>
+            <option>٠٢</option>
+            <option>٠٣</option>
+            <option>٠٤</option>
+            <option>٠٥</option>
+            <option>٠٦</option>
+            <option>٠٧</option>
+            <option>٠٨</option>
+            <option>٠٩</option>
+            <option>١٠</option>
+            <option>١١</option>
+            <option>١٢</option>
+            <option>١٣</option>
+            <option>١٤</option>
+            <option>١٥</option>
+            <option>١٦</option>
+            <option>١٧</option>
+            <option>١٨</option>
+            <option>١٩</option>
+            <option>٢٠</option>
+            <option>٢١</option>
+            <option>٢٢</option>
+        </select>
+    </div>
+
+    <!-- مستطيلات المقررات -->
+    <div class="course-box">
+        <label>اسم المقرر:</label>
+        <div class="line"></div>
+
+        <label class="cnr-label">CNR :</label>
+        <div class="line"></div>
+    </div>
+
+    <div class="course-box">
+        <label>اسم المقرر:</label>
+        <div class="line"></div>
+
+        <label class="cnr-label">CNR :</label>
+        <div class="line"></div>
+    </div>
+
+    <div class="course-box">
+        <label>اسم المقرر:</label>
+        <div class="line"></div>
+
+        <label class="cnr-label">CNR :</label>
+        <div class="line"></div>
+    </div>
+
+</div>
+
+<script>
+    // تحويل للأرقام الهندية
+    function toArabicIndic(str) {
+        const map = ['٠','١','٢','٣','٤','٥','٦','٧','٨','٩'];
+        return String(str).replace(/[0-9]/g, d => map[d]);
+    }
+
+    function updateDateTime() {
+        const now = new Date();
+
+        const dayName = now.toLocaleDateString('ar-SA', { weekday: 'long' });
+
+        const dd = toArabicIndic(String(now.getDate()).padStart(2, '0'));
+        const mm = toArabicIndic(String(now.getMonth() + 1).padStart(2, '0'));
+        const yyyy = toArabicIndic(now.getFullYear());
+        const date = `${dayName}  |  ${dd} / ${mm} / ${yyyy}`;
+
+        let h = now.getHours();
+        let m = String(now.getMinutes()).padStart(2, '0');
+        let s = String(now.getSeconds()).padStart(2, '0');
+        const ampm = h >= 12 ? 'م' : 'ص';
+
+        h = h % 12;
+        h = h ? h : 12;
+
+        const time = `${toArabicIndic(h)}:${toArabicIndic(m)}:${toArabicIndic(s)} ${ampm}`;
+
+        document.getElementById("dayValue").textContent = "";
+        document.getElementById("dateValue").textContent = date;
+        document.getElementById("timeValue").textContent = time;
+    }
+
+    setInterval(updateDateTime, 1000);
+    updateDateTime();
+
+    // عرض رقم المراقب
+    document.getElementById("proctorCodeSelect").addEventListener("change", function() {
+        document.getElementById("proctorDisplay").textContent = this.value || "--";
+    });
+</script>
+
+</body>
+</html>
