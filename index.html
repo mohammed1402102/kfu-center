@@ -2,8 +2,11 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>مركز الجبيل 1 - جامعة الملك فيصل</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- خط Tajawal -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
 
     <style>
         :root {
@@ -13,18 +16,37 @@
         }
 
         body {
-            font-family: "Tahoma", system-ui, sans-serif;
+            font-family: 'Tajawal', sans-serif;
             background: var(--light-bg);
             margin: 0;
         }
 
-        /* ===== الشريط العلوي ===== */
+        /* ================= الشريط العلوي ================= */
         .header-bar {
             position: relative;
             background: linear-gradient(135deg, #0b6a70, #145c63);
             color: #fff;
-            padding: 18px 25px;
+            padding: 22px 25px 26px;
             text-align: center;
+        }
+
+        .header-title-row {
+            font-size: 2.2rem;
+            font-weight: 800;
+            display: flex;
+            justify-content: center;
+            gap: 45px;
+            flex-wrap: wrap;
+        }
+
+        .datetime-row {
+            margin-top: 12px;
+            font-size: 1.25rem;
+            font-weight: 600;
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            align-items: center;
         }
 
         .logo-wrapper {
@@ -33,67 +55,50 @@
             top: 50%;
             transform: translateY(-50%);
         }
-
         .logo-wrapper img {
-            height: 90px;
+            height: 95px;
         }
 
-        .center-name {
-            font-size: 2rem;
-            font-weight: 800;
-        }
-        .center-code {
-            font-size: 1.3rem;
-            font-weight: 700;
+        /* ================= الإطار الذهبي ================= */
+        .page-wrapper {
+            max-width: 1100px;
+            margin: 30px auto;
+            padding: 0 15px;
         }
 
-        .datetime-row {
-            margin-top: 8px;
-            font-size: 1.15rem;
-            font-weight: 600;
-        }
-
-        /* ===== الإطار الذهبي ===== */
         .content {
-            max-width: 900px;
-            margin: 22px auto;
             background: #fff;
-            padding: 22px 26px;
-            border-radius: 18px;
+            padding: 28px;
+            border-radius: 20px;
             border: 3px solid var(--gold);
             position: relative;
         }
 
-        /* ===== مربع رمز المراقب ===== */
+        /* مربع رمز المراقب */
         .proctor-box {
             position: absolute;
-            right: -240px;
+            right: -230px;
             top: 60px;
             width: 190px;
-            padding: 12px 15px;
+            padding: 14px;
+            border-radius: 14px;
             background: #fff;
             border: 3px solid var(--teal);
-            border-radius: 12px;
+            text-align: center;
             box-shadow: 0 0 10px rgba(0,0,0,0.15);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 12px;
         }
 
         .proctor-title {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             font-weight: 800;
             color: var(--teal);
         }
 
         .proctor-number-display {
-            width: 100%;
             padding: 18px 0;
             border: 2px solid var(--teal);
-            border-radius: 8px;
-            text-align: center;
-            font-size: 3.3rem;
+            border-radius: 10px;
+            font-size: 3.2rem;
             font-weight: 900;
             color: var(--teal);
             background: #fafafa;
@@ -101,59 +106,113 @@
 
         .proctor-box select {
             width: 90%;
-            font-size: 1.1rem;
-            padding: 6px 10px;
-            border-radius: 8px;
+            padding: 8px;
+            border-radius: 10px;
             border: 2px solid var(--teal);
+            font-size: 1.2rem;
         }
 
-        /* ===== شبكة المقررات ===== */
+        /* ================= المستطيلات ================= */
         .courses-grid {
             margin-top: 10px;
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 18px 24px;
+            gap: 22px 28px;
         }
 
         .course-box {
             border: 2px solid var(--teal);
-            padding: 12px 14px;
-            border-radius: 12px;
+            padding: 16px 18px;
+            border-radius: 14px;
             background: #fafafa;
         }
 
         .course-box label {
-            font-size: 1.1rem;
-            font-weight: bold;
+            display: block;
+            font-size: 1.25rem;
+            font-weight: 700;
             color: var(--teal);
+            margin-bottom: 6px;
         }
 
+        /* إنزال CRN */
+        .course-box label:nth-of-type(2) {
+            margin-top: 18px;
+        }
+
+        /* إنزال أستاذ المقرر */
+        .course-box label:nth-of-type(3) {
+            margin-top: 18px;
+        }
+
+        /* السطر القابل للكتابة */
         .line {
             margin-top: 6px;
-            height: 26px;
             border-bottom: 2px solid #000;
+            min-height: 30px;
+            display: flex;
+            align-items: center; /* محاذاة عمودية وسط */
+            justify-content: flex-start;
+            padding-right: 6px;
+            text-align: right;
         }
 
-        .cnr-label {
-            font-size: 1rem;
-            font-weight: bold;
-            color: var(--teal);
-            margin-top: 8px;
-            display: block;
+        .editable {
+            outline: none;
+            font-size: 1.2rem;
+            font-weight: 700;
         }
 
-        /* ====== دعم الجوال ======= */
-        @media (max-width: 900px) {
-            .proctor-box {
-                position: static;
-                margin: 18px auto;
+        .red-text { color: #b30000 !important; }
+        .blue-text { color: #0040ff !important; }
+
+        /* التعليمات */
+        .instructions-box {
+            margin-top: 20px;
+            padding: 14px 16px;
+            border: 2px solid #b5d6d8;
+            background: #e9f6f7;
+            border-radius: 14px;
+            font-size: 1.1rem;
+            line-height: 1.9;
+            color: #0b6a70;
+            text-align: center;
+        }
+
+        .instructions-box b {
+            color: #b30000;
+            font-size: 1.2rem;
+        }
+
+        /* شاشة كبيرة تلقائية */
+        @media (min-width: 2000px) {
+            body {
+                font-size: 125%;
             }
-            .courses-grid {
-                grid-template-columns: 1fr;
-            }
-            .content {
-                padding-bottom: 40px;
-            }
+        }
+
+        /* وضع الشاشة الكبيرة */
+        body.large-mode {
+            font-size: 140%;
+        }
+
+        /* زر الشاشة الكبيرة – أسفل اليمين */
+        #toggleLargeBtn {
+            position: fixed;
+            bottom: 22px;
+            right: 22px;
+            padding: 12px 26px;
+            background: #0b6a70;
+            color: #fff;
+            border: 2px solid #fff;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            z-index: 9999;
+        }
+
+        #toggleLargeBtn:hover {
+            background: #0d7a80;
         }
     </style>
 </head>
@@ -161,13 +220,14 @@
 <body>
 
 <header class="header-bar">
-    <div class="center-name">اسم المركز: الجبيل ١</div>
-    <div class="center-code">رمز مركز الاختبار: ٣١٠١</div>
+    <div class="header-title-row">
+        <span>اسم المركز: الجبيل ١</span>
+        <span>رمز مركز الاختبار: ٣١٠١</span>
+    </div>
 
     <div class="datetime-row">
-        <span id="dayValue"></span> |
-        <span id="dateValue"></span> |
-        <span id="hijriValue"></span> |
+        <span id="dayName"></span>
+        <span id="hijriDate"></span>
         <span id="timeValue"></span>
     </div>
 
@@ -176,72 +236,89 @@
     </div>
 </header>
 
-<div class="content">
+<div class="page-wrapper">
+    <div class="content">
 
-    <!-- مربع رمز المراقب -->
-    <div class="proctor-box">
-        <div class="proctor-title">رمز المراقب</div>
-        <div id="proctorDisplay" class="proctor-number-display">--</div>
+        <!-- مربع رمز المراقب -->
+        <div class="proctor-box">
+            <div class="proctor-title">رمز المراقب</div>
+            <div id="proctorDisplay" class="proctor-number-display">--</div>
 
-        <select id="proctorCodeSelect">
-            <option value="">اختر</option>
-            <option>٠١</option><option>٠٢</option><option>٠٣</option>
-            <option>٠٤</option><option>٠٥</option><option>٠٦</option>
-            <option>٠٧</option><option>٠٨</option><option>٠٩</option>
-            <option>١٠</option><option>١١</option><option>١٢</option>
-            <option>١٣</option><option>١٤</option><option>١٥</option>
-            <option>١٦</option><option>١٧</option><option>١٨</option>
-            <option>١٩</option><option>٢٠</option><option>٢١</option><option>٢٢</option>
-        </select>
-    </div>
-
-    <!-- 6 مربعات -->
-    <div class="courses-grid">
-        <!-- تكرار 6 مرات -->
-        <div class="course-box">
-            <label>اسم المقرر:</label>
-            <div class="line"></div>
-            <label class="cnr-label">CNR :</label>
-            <div class="line"></div>
+            <select id="proctorCodeSelect">
+                <option value="">اختر</option>
+                <option>٠١</option><option>٠٢</option><option>٠٣</option>
+                <option>٠٤</option><option>٠٥</option><option>٠٦</option>
+                <option>٠٧</option><option>٠٨</option><option>٠٩</option>
+                <option>١٠</option><option>١١</option><option>١٢</option>
+                <option>١٣</option><option>١٤</option><option>١٥</option>
+                <option>١٦</option><option>١٧</option><option>١٨</option>
+                <option>١٩</option><option>٢٠</option><option>٢١</option><option>٢٢</option>
+            </select>
         </div>
 
-        <div class="course-box">
-            <label>اسم المقرر:</label>
-            <div class="line"></div>
-            <label class="cnr-label">CNR :</label>
-            <div class="line"></div>
+        <!-- المستطيلات -->
+        <div class="courses-grid">
+
+            <div class="course-box">
+                <label>اسم المقرر:</label>
+                <div class="line editable red-text" contenteditable="true"></div>
+
+                <label>CRN :</label>
+                <div class="line editable blue-text" contenteditable="true"></div>
+
+                <label>أستاذ المقرر :</label>
+                <div class="line editable" contenteditable="true"></div>
+            </div>
+
+            <div class="course-box">
+                <label>اسم المقرر:</label>
+                <div class="line editable red-text" contenteditable="true"></div>
+
+                <label>CRN :</label>
+                <div class="line editable blue-text" contenteditable="true"></div>
+
+                <label>أستاذ المقرر :</label>
+                <div class="line editable" contenteditable="true"></div>
+            </div>
+
+            <div class="course-box">
+                <label>اسم المقرر:</label>
+                <div class="line editable red-text" contenteditable="true"></div>
+
+                <label>CRN :</label>
+                <div class="line editable blue-text" contenteditable="true"></div>
+
+                <label>أستاذ المقرر :</label>
+                <div class="line editable" contenteditable="true"></div>
+            </div>
+
+            <div class="course-box">
+                <label>اسم المقرر:</label>
+                <div class="line editable red-text" contenteditable="true"></div>
+
+                <label>CRN :</label>
+                <div class="line editable blue-text" contenteditable="true"></div>
+
+                <label>أستاذ المقرر :</label>
+                <div class="line editable" contenteditable="true"></div>
+            </div>
+
         </div>
 
-        <div class="course-box">
-            <label>اسم المقرر:</label>
-            <div class="line"></div>
-            <label class="cnr-label">CNR :</label>
-            <div class="line"></div>
-        </div>
-
-        <div class="course-box">
-            <label>اسم المقرر:</label>
-            <div class="line"></div>
-            <label class="cnr-label">CNR :</label>
-            <div class="line"></div>
-        </div>
-
-        <div class="course-box">
-            <label>اسم المقرر:</label>
-            <div class="line"></div>
-            <label class="cnr-label">CNR :</label>
-            <div class="line"></div>
-        </div>
-
-        <div class="course-box">
-            <label>اسم المقرر:</label>
-            <div class="line"></div>
-            <label class="cnr-label">CNR :</label>
-            <div class="line"></div>
+        <!-- التعليمات -->
+        <div class="instructions-box">
+            <b>تعليمات هامة:</b><br>
+            يُمنع منعًا باتًا إدخال أو استخدام الجوال، السماعات، الساعات الذكية، النظارات الذكية، أو أي أجهزة إلكترونية داخل قاعة الاختبار.<br>
+            يلزم إحضار أصل الهوية الوطنية (أو هوية المقيم) وإبرازها للمراقب قبل بدء الاختبار.<br>
+            ويُعد وجود أي جهاز أو عدم إحضار الهوية مخالفة تُطبّق بشأنها الأنظمة واللوائح المعتمدة بالجامعة.<br>
+            مع تمنياتنا للجميع بالنجاح والتوفيق.
         </div>
 
     </div>
 </div>
+
+<!-- زر وضع الشاشة الكبيرة -->
+<button id="toggleLargeBtn">وضع شاشة كبيرة</button>
 
 <script>
     function toArabicIndic(str) {
@@ -253,39 +330,49 @@
         const now = new Date();
 
         // اليوم
-        const dayName = now.toLocaleDateString('ar-SA', { weekday: 'long' });
-
-        // التاريخ الميلادي
-        const d = String(now.getDate()).padStart(2, '0');
-        const m = String(now.getMonth() + 1).padStart(2, '0');
-        const y = now.getFullYear();
-        const greg = `${toArabicIndic(d)} / ${toArabicIndic(m)} / ${toArabicIndic(y)}`;
+        const dayNames = ["الأحد","الاثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"];
+        document.getElementById("dayName").textContent = "اليوم: " + dayNames[now.getDay()];
 
         // التاريخ الهجري
-        const hijri = new Intl.DateTimeFormat('ar-SA-u-ca-islamic', {
-            year: 'numeric',
-            month: 'numeric',
-            day: 'numeric'
-        }).format(now);
+        let day="", month="", year="";
+        try {
+            const fmt = new Intl.DateTimeFormat("ar-SA-u-ca-islamic-umalqura", {
+                day: "2-digit",
+                month: "2-digit",
+                year: "numeric"
+            });
+            const parts = fmt.formatToParts(now);
+            day   = parts.find(p => p.type === "day")?.value || "";
+            month = parts.find(p => p.type === "month")?.value || "";
+            year  = parts.find(p => p.type === "year")?.value || "";
+        } catch {}
 
-        // الساعة
+        const hijriFormatted = `${day} / ${month} / ${year}`;
+        document.getElementById("hijriDate").textContent = "التاريخ: " + hijriFormatted + " هـ";
+
+        // الوقت
         let h = now.getHours();
-        let min = String(now.getMinutes()).padStart(2, '0');
-        const ampm = h >= 12 ? 'م' : 'ص';
-        h = (h % 12) || 12;
-        const time = `${toArabicIndic(h)}:${toArabicIndic(min)} ${ampm}`;
-
-        document.getElementById("dayValue").textContent = dayName;
-        document.getElementById("dateValue").textContent = greg;
-        document.getElementById("hijriValue").textContent = hijri;
-        document.getElementById("timeValue").textContent = time;
+        let m = String(now.getMinutes()).padStart(2, "0");
+        const ampm = h >= 12 ? "م" : "ص";
+        h = h % 12 || 12;
+        const timeStr = toArabicIndic(h)+":"+toArabicIndic(m)+" "+ampm;
+        document.getElementById("timeValue").textContent = "الوقت: " + timeStr;
     }
 
     setInterval(updateDateTime, 1000);
     updateDateTime();
 
+    // تغيير رمز المراقب
     document.getElementById("proctorCodeSelect").addEventListener("change", function () {
         document.getElementById("proctorDisplay").textContent = this.value || "--";
+    });
+
+    // زر الشاشة الكبيرة
+    document.getElementById("toggleLargeBtn").addEventListener("click", function () {
+        document.body.classList.toggle("large-mode");
+        this.textContent = document.body.classList.contains("large-mode")
+            ? "وضع عادي"
+            : "وضع شاشة كبيرة";
     });
 </script>
 
