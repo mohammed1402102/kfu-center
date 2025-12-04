@@ -39,19 +39,21 @@
             flex-wrap: wrap;
         }
 
+        /* ================= تكبير خط اليوم والتاريخ والوقت ================= */
         .datetime-row {
             margin-top: 12px;
-            font-size: 1.25rem;
-            font-weight: 600;
+            font-size: 1.65rem;     /* ← خط كبير وواضح */
+            font-weight: 700;       /* ← سميك ومقروء */
             display: flex;
             justify-content: center;
-            gap: 16px;
+            gap: 22px;              /* ← مسافة واسعة بين العناصر */
             align-items: center;
         }
 
+        /* ================= شعار الجامعة ================= */
         .logo-wrapper {
             position: absolute;
-            right: 25px;
+            right: 40px;     /* ← أقرب لاسم المركز */
             top: 50%;
             transform: translateY(-50%);
         }
@@ -78,7 +80,7 @@
         /* ================= مربع رمز المراقب يمين ================= */
         .proctor-box {
             position: absolute;
-            right: -260px;   /* ← تم إبعاده أكثر */
+            right: -260px;
             top: 60px;
             width: 220px;
             padding: 14px;
@@ -116,7 +118,7 @@
         /* ================= صندوق التعليمات يسار ================= */
         .instructions-box {
             position: absolute;
-            left: -260px;   /* ← نفس بُعد المراقب */
+            left: -260px;
             top: 60px;
             width: 220px;
             padding: 14px 16px;
@@ -135,7 +137,7 @@
             font-size: 1.2rem;
         }
 
-        /* ================= المستطيلات ================= */
+        /* ================= المستطيلات (اسم المقرر - CRN - أستاذ المقرر) ================= */
         .courses-grid {
             margin-top: 10px;
             display: grid;
@@ -166,7 +168,6 @@
             margin-top: 18px;
         }
 
-        /* سطر الكتابة */
         .line {
             margin-top: 6px;
             border-bottom: 2px solid #000;
@@ -185,13 +186,6 @@
 
         .red-text { color: #b30000 !important; }
         .blue-text { color: #0040ff !important; }
-
-        /* شاشة كبيرة تلقائية */
-        @media (min-width: 2000px) {
-            body {
-                font-size: 125%;
-            }
-        }
 
         /* وضع الشاشة الكبيرة */
         body.large-mode {
@@ -216,7 +210,6 @@
         #toggleLargeBtn:hover {
             background: #0d7a80;
         }
-
     </style>
 </head>
 
@@ -235,14 +228,14 @@
     </div>
 
     <div class="logo-wrapper">
-        <img src="KFU_logo_white.png">
+        <img src="KFU_logo_white.png" alt="شعار جامعة الملك فيصل">
     </div>
 </header>
 
 <div class="page-wrapper">
     <div class="content">
 
-        <!-- يمين -->
+        <!-- يمين: رمز المراقب -->
         <div class="proctor-box">
             <div class="proctor-title">رمز المراقب</div>
             <div id="proctorDisplay" class="proctor-number-display">--</div>
@@ -259,7 +252,7 @@
             </select>
         </div>
 
-        <!-- يسار -->
+        <!-- يسار: التعليمات -->
         <div class="instructions-box">
             <b>تعليمات هامة:</b><br>
             يُمنع منعًا باتًا إدخال أو استخدام الجوال، السماعات، الساعات الذكية، النظارات الذكية، أو أي أجهزة إلكترونية داخل قاعة الاختبار.<br>
