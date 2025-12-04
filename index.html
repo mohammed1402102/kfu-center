@@ -64,6 +64,7 @@
             max-width: 1100px;
             margin: 30px auto;
             padding: 0 15px;
+            position: relative;
         }
 
         .content {
@@ -74,12 +75,12 @@
             position: relative;
         }
 
-        /* مربع رمز المراقب */
+        /* ================= مربع رمز المراقب يمين ================= */
         .proctor-box {
             position: absolute;
-            right: -230px;
+            right: -260px;   /* ← تم إبعاده أكثر */
             top: 60px;
-            width: 190px;
+            width: 220px;
             padding: 14px;
             border-radius: 14px;
             background: #fff;
@@ -112,6 +113,28 @@
             font-size: 1.2rem;
         }
 
+        /* ================= صندوق التعليمات يسار ================= */
+        .instructions-box {
+            position: absolute;
+            left: -260px;   /* ← نفس بُعد المراقب */
+            top: 60px;
+            width: 220px;
+            padding: 14px 16px;
+            border: 2px solid #b5d6d8;
+            background: #e9f6f7;
+            border-radius: 14px;
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: #0b6a70;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0,0,0,0.15);
+        }
+
+        .instructions-box b {
+            color: #b30000;
+            font-size: 1.2rem;
+        }
+
         /* ================= المستطيلات ================= */
         .courses-grid {
             margin-top: 10px;
@@ -135,26 +158,23 @@
             margin-bottom: 6px;
         }
 
-        /* إنزال CRN */
         .course-box label:nth-of-type(2) {
             margin-top: 18px;
         }
 
-        /* إنزال أستاذ المقرر */
         .course-box label:nth-of-type(3) {
             margin-top: 18px;
         }
 
-        /* السطر القابل للكتابة */
+        /* سطر الكتابة */
         .line {
             margin-top: 6px;
             border-bottom: 2px solid #000;
             min-height: 30px;
             display: flex;
-            align-items: center; /* محاذاة عمودية وسط */
+            align-items: center;
             justify-content: flex-start;
             padding-right: 6px;
-            text-align: right;
         }
 
         .editable {
@@ -165,24 +185,6 @@
 
         .red-text { color: #b30000 !important; }
         .blue-text { color: #0040ff !important; }
-
-        /* التعليمات */
-        .instructions-box {
-            margin-top: 20px;
-            padding: 14px 16px;
-            border: 2px solid #b5d6d8;
-            background: #e9f6f7;
-            border-radius: 14px;
-            font-size: 1.1rem;
-            line-height: 1.9;
-            color: #0b6a70;
-            text-align: center;
-        }
-
-        .instructions-box b {
-            color: #b30000;
-            font-size: 1.2rem;
-        }
 
         /* شاشة كبيرة تلقائية */
         @media (min-width: 2000px) {
@@ -196,7 +198,7 @@
             font-size: 140%;
         }
 
-        /* زر الشاشة الكبيرة – أسفل اليمين */
+        /* زر الشاشة الكبيرة */
         #toggleLargeBtn {
             position: fixed;
             bottom: 22px;
@@ -214,6 +216,7 @@
         #toggleLargeBtn:hover {
             background: #0d7a80;
         }
+
     </style>
 </head>
 
@@ -239,7 +242,7 @@
 <div class="page-wrapper">
     <div class="content">
 
-        <!-- مربع رمز المراقب -->
+        <!-- يمين -->
         <div class="proctor-box">
             <div class="proctor-title">رمز المراقب</div>
             <div id="proctorDisplay" class="proctor-number-display">--</div>
@@ -254,6 +257,15 @@
                 <option>١٦</option><option>١٧</option><option>١٨</option>
                 <option>١٩</option><option>٢٠</option><option>٢١</option><option>٢٢</option>
             </select>
+        </div>
+
+        <!-- يسار -->
+        <div class="instructions-box">
+            <b>تعليمات هامة:</b><br>
+            يُمنع منعًا باتًا إدخال أو استخدام الجوال، السماعات، الساعات الذكية، النظارات الذكية، أو أي أجهزة إلكترونية داخل قاعة الاختبار.<br>
+            يلزم إحضار أصل الهوية الوطنية (أو هوية المقيم) وإبرازها للمراقب قبل بدء الاختبار.<br>
+            ويُعد وجود أي جهاز أو عدم إحضار الهوية مخالفة تُطبّق بشأنها الأنظمة واللوائح المعتمدة بالجامعة.<br>
+            مع تمنياتنا للجميع بالنجاح والتوفيق.
         </div>
 
         <!-- المستطيلات -->
@@ -305,19 +317,9 @@
 
         </div>
 
-        <!-- التعليمات -->
-        <div class="instructions-box">
-            <b>تعليمات هامة:</b><br>
-            يُمنع منعًا باتًا إدخال أو استخدام الجوال، السماعات، الساعات الذكية، النظارات الذكية، أو أي أجهزة إلكترونية داخل قاعة الاختبار.<br>
-            يلزم إحضار أصل الهوية الوطنية (أو هوية المقيم) وإبرازها للمراقب قبل بدء الاختبار.<br>
-            ويُعد وجود أي جهاز أو عدم إحضار الهوية مخالفة تُطبّق بشأنها الأنظمة واللوائح المعتمدة بالجامعة.<br>
-            مع تمنياتنا للجميع بالنجاح والتوفيق.
-        </div>
-
     </div>
 </div>
 
-<!-- زر وضع الشاشة الكبيرة -->
 <button id="toggleLargeBtn">وضع شاشة كبيرة</button>
 
 <script>
@@ -329,11 +331,9 @@
     function updateDateTime() {
         const now = new Date();
 
-        // اليوم
         const dayNames = ["الأحد","الاثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"];
         document.getElementById("dayName").textContent = "اليوم: " + dayNames[now.getDay()];
 
-        // التاريخ الهجري
         let day="", month="", year="";
         try {
             const fmt = new Intl.DateTimeFormat("ar-SA-u-ca-islamic-umalqura", {
@@ -347,27 +347,24 @@
             year  = parts.find(p => p.type === "year")?.value || "";
         } catch {}
 
-        const hijriFormatted = `${day} / ${month} / ${year}`;
-        document.getElementById("hijriDate").textContent = "التاريخ: " + hijriFormatted + " هـ";
+        const hijri = `${day} / ${month} / ${year}`;
+        document.getElementById("hijriDate").textContent = "التاريخ: " + hijri + " هـ";
 
-        // الوقت
         let h = now.getHours();
         let m = String(now.getMinutes()).padStart(2, "0");
         const ampm = h >= 12 ? "م" : "ص";
         h = h % 12 || 12;
-        const timeStr = toArabicIndic(h)+":"+toArabicIndic(m)+" "+ampm;
-        document.getElementById("timeValue").textContent = "الوقت: " + timeStr;
+        document.getElementById("timeValue").textContent =
+            "الوقت: " + toArabicIndic(h)+":"+toArabicIndic(m)+" "+ampm;
     }
 
     setInterval(updateDateTime, 1000);
     updateDateTime();
 
-    // تغيير رمز المراقب
     document.getElementById("proctorCodeSelect").addEventListener("change", function () {
         document.getElementById("proctorDisplay").textContent = this.value || "--";
     });
 
-    // زر الشاشة الكبيرة
     document.getElementById("toggleLargeBtn").addEventListener("click", function () {
         document.body.classList.toggle("large-mode");
         this.textContent = document.body.classList.contains("large-mode")
