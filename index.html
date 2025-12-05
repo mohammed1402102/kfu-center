@@ -39,21 +39,21 @@
             flex-wrap: wrap;
         }
 
-        /* ================= تكبير خط اليوم والتاريخ والوقت ================= */
         .datetime-row {
             margin-top: 12px;
-            font-size: 1.65rem;     /* ← خط كبير وواضح */
-            font-weight: 700;       /* ← سميك ومقروء */
+            font-size: 1.65rem;
+            font-weight: 700;
             display: flex;
             justify-content: center;
-            gap: 22px;              /* ← مسافة واسعة بين العناصر */
+            gap: 22px;
             align-items: center;
+            flex-wrap: wrap;
         }
 
-        /* ================= شعار الجامعة ================= */
+        /* شعار الجامعة */
         .logo-wrapper {
             position: absolute;
-            right: 40px;     /* ← أقرب لاسم المركز */
+            right: 40px;
             top: 50%;
             transform: translateY(-50%);
         }
@@ -61,7 +61,7 @@
             height: 95px;
         }
 
-        /* ================= الإطار الذهبي ================= */
+        /* الإطار الذهبي */
         .page-wrapper {
             max-width: 1100px;
             margin: 30px auto;
@@ -77,10 +77,10 @@
             position: relative;
         }
 
-        /* ================= مربع رمز المراقب يمين ================= */
+        /* مربع رمز المراقب يمين */
         .proctor-box {
             position: absolute;
-            right: -260px;
+            right: -280px;
             top: 60px;
             width: 220px;
             padding: 14px;
@@ -115,10 +115,10 @@
             font-size: 1.2rem;
         }
 
-        /* ================= صندوق التعليمات يسار ================= */
+        /* مربع التعليمات يسار */
         .instructions-box {
             position: absolute;
-            left: -260px;
+            left: -280px;
             top: 60px;
             width: 220px;
             padding: 14px 16px;
@@ -137,9 +137,24 @@
             font-size: 1.2rem;
         }
 
-        /* ================= المستطيلات (اسم المقرر - CRN - أستاذ المقرر) ================= */
+        /* القائمة: عدد المقررات */
+        .select-container {
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--teal);
+        }
+
+        .select-container select {
+            padding: 8px 12px;
+            font-size: 1.2rem;
+            border: 2px solid var(--teal);
+            border-radius: 10px;
+            background: #fff;
+        }
+
+        /* المستطيلات */
         .courses-grid {
-            margin-top: 10px;
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 22px 28px;
@@ -160,21 +175,12 @@
             margin-bottom: 6px;
         }
 
-        .course-box label:nth-of-type(2) {
-            margin-top: 18px;
-        }
-
-        .course-box label:nth-of-type(3) {
-            margin-top: 18px;
-        }
-
-        .line {
+        .course-box .line {
             margin-top: 6px;
             border-bottom: 2px solid #000;
             min-height: 30px;
             display: flex;
             align-items: center;
-            justify-content: flex-start;
             padding-right: 6px;
         }
 
@@ -187,28 +193,11 @@
         .red-text { color: #b30000 !important; }
         .blue-text { color: #0040ff !important; }
 
-        /* وضع الشاشة الكبيرة */
-        body.large-mode {
-            font-size: 140%;
-        }
-
-        /* زر الشاشة الكبيرة */
-        #toggleLargeBtn {
-            position: fixed;
-            bottom: 22px;
-            right: 22px;
-            padding: 12px 26px;
-            background: #0b6a70;
-            color: #fff;
-            border: 2px solid #fff;
-            border-radius: 30px;
-            cursor: pointer;
-            font-size: 1.1rem;
-            z-index: 9999;
-        }
-
-        #toggleLargeBtn:hover {
-            background: #0d7a80;
+        @media (max-width: 1200px) {
+            .proctor-box, .instructions-box {
+                position: static;
+                margin: 10px auto;
+            }
         }
     </style>
 </head>
@@ -224,6 +213,7 @@
     <div class="datetime-row">
         <span id="dayName"></span>
         <span id="hijriDate"></span>
+        <span id="gregDate"></span>
         <span id="timeValue"></span>
     </div>
 
@@ -234,6 +224,17 @@
 
 <div class="page-wrapper">
     <div class="content">
+
+        <!-- عدد المقررات -->
+        <div class="select-container">
+            عدد المقررات:
+            <select id="coursesCountSelect">
+                <option value="1">١</option>
+                <option value="2">٢</option>
+                <option value="3">٣</option>
+                <option value="4" selected>٤</option>
+            </select>
+        </div>
 
         <!-- يمين: رمز المراقب -->
         <div class="proctor-box">
@@ -252,7 +253,7 @@
             </select>
         </div>
 
-        <!-- يسار: التعليمات -->
+        <!-- يسار: التعليمات (النص الكامل) -->
         <div class="instructions-box">
             <b>تعليمات هامة:</b><br>
             يُمنع منعًا باتًا إدخال أو استخدام الجوال، السماعات، الساعات الذكية، النظارات الذكية، أو أي أجهزة إلكترونية داخل قاعة الاختبار.<br>
@@ -262,7 +263,7 @@
         </div>
 
         <!-- المستطيلات -->
-        <div class="courses-grid">
+        <div class="courses-grid" id="coursesGrid">
 
             <div class="course-box">
                 <label>اسم المقرر:</label>
@@ -313,20 +314,35 @@
     </div>
 </div>
 
-<button id="toggleLargeBtn">وضع شاشة كبيرة</button>
-
 <script>
+    /* ========== التحكم بعدد المقررات ========== */
+    const selectCourses = document.getElementById("coursesCountSelect");
+    const courseBoxes = document.querySelectorAll(".course-box");
+
+    function updateCoursesCount() {
+        const count = Number(selectCourses.value);
+        courseBoxes.forEach((box, index) => {
+            box.style.display = (index < count) ? "block" : "none";
+        });
+    }
+
+    selectCourses.addEventListener("change", updateCoursesCount);
+    updateCoursesCount(); // تشغيل عند فتح الصفحة
+
+    /* ========== تحويل الأرقام ========== */
     function toArabicIndic(str) {
         const map = ['٠','١','٢','٣','٤','٥','٦','٧','٨','٩'];
         return String(str).replace(/[0-9]/g, d => map[d]);
     }
 
+    /* ========== التاريخ والوقت ========== */
     function updateDateTime() {
         const now = new Date();
 
         const dayNames = ["الأحد","الاثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"];
         document.getElementById("dayName").textContent = "اليوم: " + dayNames[now.getDay()];
 
+        // هجري
         let day="", month="", year="";
         try {
             const fmt = new Intl.DateTimeFormat("ar-SA-u-ca-islamic-umalqura", {
@@ -339,30 +355,32 @@
             month = parts.find(p => p.type === "month")?.value || "";
             year  = parts.find(p => p.type === "year")?.value || "";
         } catch {}
+        document.getElementById("hijriDate").textContent =
+            "الهجري: " + day + " / " + month + " / " + year + " هـ";
 
-        const hijri = `${day} / ${month} / ${year}`;
-        document.getElementById("hijriDate").textContent = "التاريخ: " + hijri + " هـ";
+        // ميلادي
+        const gDay   = String(now.getDate()).padStart(2, "0");
+        const gMonth = String(now.getMonth() + 1).padStart(2, "0");
+        const gYear  = now.getFullYear();
+        const gregStr = `${toArabicIndic(gDay)} / ${toArabicIndic(gMonth)} / ${toArabicIndic(gYear)}`;
+        document.getElementById("gregDate").textContent =
+            "الميلادي: " + gregStr + " م";
 
+        // وقت 12 ساعة
         let h = now.getHours();
         let m = String(now.getMinutes()).padStart(2, "0");
         const ampm = h >= 12 ? "م" : "ص";
         h = h % 12 || 12;
         document.getElementById("timeValue").textContent =
-            "الوقت: " + toArabicIndic(h)+":"+toArabicIndic(m)+" "+ampm;
+            "الوقت: " + toArabicIndic(h) + ":" + toArabicIndic(m) + " " + ampm;
     }
 
     setInterval(updateDateTime, 1000);
     updateDateTime();
 
+    /* رمز المراقب */
     document.getElementById("proctorCodeSelect").addEventListener("change", function () {
         document.getElementById("proctorDisplay").textContent = this.value || "--";
-    });
-
-    document.getElementById("toggleLargeBtn").addEventListener("click", function () {
-        document.body.classList.toggle("large-mode");
-        this.textContent = document.body.classList.contains("large-mode")
-            ? "وضع عادي"
-            : "وضع شاشة كبيرة";
     });
 </script>
 
