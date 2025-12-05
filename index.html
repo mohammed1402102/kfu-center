@@ -5,9 +5,7 @@
     <title>مركز الجبيل 1 - جامعة الملك فيصل</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- خط Tajawal -->
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
-
+    <!-- بدون أي خطوط من الإنترنت، نعتمد على خطوط النظام -->
     <style>
         :root {
             --gold: #c79c48;
@@ -16,7 +14,7 @@
         }
 
         body {
-            font-family: 'Tajawal', sans-serif;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
             background: var(--light-bg);
             margin: 0;
         }
@@ -168,7 +166,7 @@
             direction: rtl;
         }
 
-        /* محاذاة يمين موحدة */
+        /* محاذاة يمين موحّدة للعناوين */
         .course-box label {
             display: block;
             font-size: 1.20rem;
@@ -213,6 +211,56 @@
                 position: static;
                 margin: 10px auto;
             }
+        }
+
+        /* ================= زر وضع بروميثيان ================= */
+        #prometheanBtn {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            padding: 10px 22px;
+            border-radius: 24px;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            background: #0b6a70;
+            color: #fff;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+            z-index: 9999;
+        }
+
+        #prometheanBtn:hover {
+            opacity: 0.9;
+        }
+
+        /* ============ وضع عرض بروميثيان ============ */
+        body.promethean-mode {
+            font-size: 130%;
+        }
+
+        body.promethean-mode .page-wrapper {
+            max-width: 1400px;
+        }
+
+        body.promethean-mode .content {
+            padding: 36px 40px;
+        }
+
+        body.promethean-mode .header-title-row {
+            font-size: 2.6rem;
+        }
+
+        body.promethean-mode .datetime-row {
+            font-size: 1.9rem;
+        }
+
+        body.promethean-mode .course-box label {
+            font-size: 1.35rem;
+        }
+
+        body.promethean-mode .course-box .line {
+            min-height: 32px;
         }
     </style>
 </head>
@@ -329,6 +377,9 @@
     </div>
 </div>
 
+<!-- زر وضع بروميثيان -->
+<button id="prometheanBtn">وضع عرض بروميثيان</button>
+
 <script>
     /* ========== التحكم بعدد المقررات ========== */
     const selectCourses = document.getElementById("coursesCountSelect");
@@ -344,7 +395,7 @@
     selectCourses.addEventListener("change", updateCoursesCount);
     updateCoursesCount();
 
-    /* ========== تحويل الأرقام ========== */
+    /* ========== تحويل الأرقام إلى عربية ========== */
     function toArabicIndic(str) {
         const map = ['٠','١','٢','٣','٤','٥','٦','٧','٨','٩'];
         return String(str).replace(/[0-9]/g, d => map[d]);
@@ -397,6 +448,15 @@
     /* رمز المراقب */
     document.getElementById("proctorCodeSelect").addEventListener("change", function () {
         document.getElementById("proctorDisplay").textContent = this.value || "--";
+    });
+
+    /* وضع عرض بروميثيان */
+    const prometheanBtn = document.getElementById("prometheanBtn");
+    prometheanBtn.addEventListener("click", () => {
+        document.body.classList.toggle("promethean-mode");
+        prometheanBtn.textContent = document.body.classList.contains("promethean-mode")
+            ? "وضع عادي"
+            : "وضع عرض بروميثيان";
     });
 </script>
 
