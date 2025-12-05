@@ -5,7 +5,6 @@
     <title>مركز الجبيل 1 - جامعة الملك فيصل</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- بدون أي خطوط من الإنترنت، نعتمد على خطوط النظام -->
     <style>
         :root {
             --gold: #c79c48;
@@ -75,13 +74,13 @@
             position: relative;
         }
 
-        /* مربع رمز المراقب يمين */
+        /* ============= مربع المراقب ============= */
         .proctor-box {
             position: absolute;
-            right: -280px;
+            right: -320px;     /* ← الإبعاد الجديد */
             top: 60px;
-            width: 220px;
-            padding: 14px;
+            width: 240px;
+            padding: 16px;
             border-radius: 14px;
             background: #fff;
             border: 3px solid var(--teal);
@@ -90,41 +89,43 @@
         }
 
         .proctor-title {
-            font-size: 1.4rem;
+            font-size: 1.8rem;
             font-weight: 800;
             color: var(--teal);
         }
 
         .proctor-number-display {
-            padding: 18px 0;
+            margin-top: 8px;
+            padding: 14px 0;
             border: 2px solid var(--teal);
             border-radius: 10px;
-            font-size: 3.2rem;
-            font-weight: 900;
+            font-size: 1.8rem;
+            font-weight: 800;
             color: var(--teal);
             background: #fafafa;
         }
 
         .proctor-box select {
-            width: 90%;
+            margin-top: 10px;
+            width: 95%;
             padding: 8px;
             border-radius: 10px;
             border: 2px solid var(--teal);
-            font-size: 1.2rem;
+            font-size: 1.8rem;
         }
 
-        /* مربع التعليمات يسار */
+        /* ============= مربع التعليمات ============= */
         .instructions-box {
             position: absolute;
-            left: -280px;
+            left: -320px;      /* ← الإبعاد الجديد */
             top: 60px;
-            width: 220px;
-            padding: 14px 16px;
+            width: 260px;
+            padding: 16px 18px;
             border: 2px solid #b5d6d8;
             background: #e9f6f7;
             border-radius: 14px;
-            font-size: 1.05rem;
-            line-height: 1.7;
+            font-size: 1.6rem;    /* ← كما طلبت */
+            line-height: 1.6;
             color: #0b6a70;
             text-align: center;
             box-shadow: 0 0 10px rgba(0,0,0,0.15);
@@ -132,26 +133,27 @@
 
         .instructions-box b {
             color: #b30000;
-            font-size: 1.2rem;
+            font-size: 1.6rem;
+            font-weight: 800;
         }
 
-        /* القائمة: عدد المقررات */
+        /* ============= قائمة عدد المقررات ============= */
         .select-container {
             margin-bottom: 20px;
-            font-size: 1.3rem;
+            font-size: 1.6rem;
             font-weight: 700;
             color: var(--teal);
         }
 
         .select-container select {
-            padding: 8px 12px;
-            font-size: 1.2rem;
+            padding: 6px 10px;
+            font-size: 1.4rem;
             border: 2px solid var(--teal);
             border-radius: 10px;
             background: #fff;
         }
 
-        /* المستطيلات */
+        /* ============= المستطيلات ============= */
         .courses-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -166,24 +168,16 @@
             direction: rtl;
         }
 
-        /* محاذاة يمين موحّدة للعناوين */
         .course-box label {
             display: block;
-            font-size: 1.20rem;
-            font-weight: 700;
+            font-size: 1.8rem;
+            font-weight: 800;
             color: var(--teal);
             margin-bottom: 3px;
             text-align: right;
-            padding-right: 0;
-            margin-right: 0;
         }
 
-        /* زيادة المسافة قبل عنوان CRN */
-        .course-box label:nth-of-type(2) {
-            margin-top: 12px !important;
-        }
-
-        /* زيادة المسافة قبل عنوان أستاذ المقرر */
+        .course-box label:nth-of-type(2),
         .course-box label:nth-of-type(3) {
             margin-top: 12px !important;
         }
@@ -191,7 +185,7 @@
         .course-box .line {
             margin-top: 2px;
             border-bottom: 2px solid #000;
-            min-height: 28px;
+            min-height: 40px;
             display: flex;
             align-items: center;
             padding-right: 6px;
@@ -199,68 +193,19 @@
 
         .editable {
             outline: none;
-            font-size: 1.2rem;
-            font-weight: 700;
+            font-size: 1.8rem;
+            font-weight: 800;
         }
 
         .red-text { color: #b30000 !important; }
         .blue-text { color: #0040ff !important; }
 
+        /* للآيباد وسفاري */
         @media (max-width: 1200px) {
             .proctor-box, .instructions-box {
                 position: static;
                 margin: 10px auto;
             }
-        }
-
-        /* ================= زر وضع بروميثيان ================= */
-        #prometheanBtn {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            padding: 10px 22px;
-            border-radius: 24px;
-            border: none;
-            cursor: pointer;
-            font-size: 1rem;
-            font-weight: 600;
-            background: #0b6a70;
-            color: #fff;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-            z-index: 9999;
-        }
-
-        #prometheanBtn:hover {
-            opacity: 0.9;
-        }
-
-        /* ============ وضع عرض بروميثيان ============ */
-        body.promethean-mode {
-            font-size: 130%;
-        }
-
-        body.promethean-mode .page-wrapper {
-            max-width: 1400px;
-        }
-
-        body.promethean-mode .content {
-            padding: 36px 40px;
-        }
-
-        body.promethean-mode .header-title-row {
-            font-size: 2.6rem;
-        }
-
-        body.promethean-mode .datetime-row {
-            font-size: 1.9rem;
-        }
-
-        body.promethean-mode .course-box label {
-            font-size: 1.35rem;
-        }
-
-        body.promethean-mode .course-box .line {
-            min-height: 32px;
         }
     </style>
 </head>
@@ -299,7 +244,7 @@
             </select>
         </div>
 
-        <!-- يمين: رمز المراقب -->
+        <!-- مربع المراقب -->
         <div class="proctor-box">
             <div class="proctor-title">رمز المراقب</div>
             <div id="proctorDisplay" class="proctor-number-display">--</div>
@@ -316,7 +261,7 @@
             </select>
         </div>
 
-        <!-- يسار: التعليمات -->
+        <!-- مربع التعليمات -->
         <div class="instructions-box">
             <b>تعليمات هامة:</b><br>
             يُمنع منعًا باتًا إدخال أو استخدام الجوال، السماعات، الساعات الذكية، النظارات الذكية، أو أي أجهزة إلكترونية داخل قاعة الاختبار.<br>
@@ -377,31 +322,28 @@
     </div>
 </div>
 
-<!-- زر وضع بروميثيان -->
-<button id="prometheanBtn">وضع عرض بروميثيان</button>
-
 <script>
-    /* ========== التحكم بعدد المقررات ========== */
+    /* التحكم بعدد المقررات */
     const selectCourses = document.getElementById("coursesCountSelect");
     const courseBoxes = document.querySelectorAll(".course-box");
 
     function updateCoursesCount() {
         const count = Number(selectCourses.value);
-        courseBoxes.forEach((box, index) => {
-            box.style.display = (index < count) ? "block" : "none";
-        });
+        courseBoxes.forEach((box, index) =>
+            box.style.display = index < count ? "block" : "none"
+        );
     }
 
     selectCourses.addEventListener("change", updateCoursesCount);
     updateCoursesCount();
 
-    /* ========== تحويل الأرقام إلى عربية ========== */
+    /* الأرقام العربية */
     function toArabicIndic(str) {
         const map = ['٠','١','٢','٣','٤','٥','٦','٧','٨','٩'];
         return String(str).replace(/[0-9]/g, d => map[d]);
     }
 
-    /* ========== التاريخ والوقت ========== */
+    /* التاريخ والوقت */
     function updateDateTime() {
         const now = new Date();
 
@@ -409,37 +351,32 @@
         document.getElementById("dayName").textContent = "اليوم: " + dayNames[now.getDay()];
 
         // هجري
-        let day="", month="", year="";
         try {
-            const fmt = new Intl.DateTimeFormat("ar-SA-u-ca-islamic-umalqura", {
-                day: "2-digit",
-                month: "2-digit",
-                year: "numeric"
-            });
-            const parts = fmt.formatToParts(now);
-            day   = parts.find(p => p.type === "day")?.value || "";
-            month = parts.find(p => p.type === "month")?.value || "";
-            year  = parts.find(p => p.type === "year")?.value || "";
+            const fmt = new Intl.DateTimeFormat("ar-SA-u-ca-islamic-umalqura",
+                { day: "2-digit", month: "2-digit", year: "numeric" }
+            );
+            const p = fmt.formatToParts(now);
+            const d = p.find(x => x.type === "day")?.value;
+            const m = p.find(x => x.type === "month")?.value;
+            const y = p.find(x => x.type === "year")?.value;
+            document.getElementById("hijriDate").textContent =
+                "الهجري: " + d + " / " + m + " / " + y + " هـ";
         } catch {}
 
-        document.getElementById("hijriDate").textContent =
-            "الهجري: " + day + " / " + month + " / " + year + " هـ";
-
         // ميلادي
-        const gDay   = String(now.getDate()).padStart(2,"0");
-        const gMonth = String(now.getMonth()+1).padStart(2,"0");
-        const gYear  = now.getFullYear();
-        const gregStr = `${toArabicIndic(gDay)} / ${toArabicIndic(gMonth)} / ${toArabicIndic(gYear)}`;
+        const gd = String(now.getDate()).padStart(2, "0");
+        const gm = String(now.getMonth() + 1).padStart(2, "0");
+        const gy = now.getFullYear();
         document.getElementById("gregDate").textContent =
-            "الميلادي: " + gregStr + " م";
+            "الميلادي: " + toArabicIndic(gd) + " / " + toArabicIndic(gm) + " / " + toArabicIndic(gy) + " م";
 
-        // وقت 12 ساعة
+        // وقت
         let h = now.getHours();
-        let m = String(now.getMinutes()).padStart(2,"0");
+        let m2 = String(now.getMinutes()).padStart(2, "0");
         const ampm = h >= 12 ? "م" : "ص";
         h = h % 12 || 12;
         document.getElementById("timeValue").textContent =
-            "الوقت: " + toArabicIndic(h) + ":" + toArabicIndic(m) + " " + ampm;
+            "الوقت: " + toArabicIndic(h) + ":" + toArabicIndic(m2) + " " + ampm;
     }
 
     setInterval(updateDateTime, 1000);
@@ -447,16 +384,8 @@
 
     /* رمز المراقب */
     document.getElementById("proctorCodeSelect").addEventListener("change", function () {
-        document.getElementById("proctorDisplay").textContent = this.value || "--";
-    });
-
-    /* وضع عرض بروميثيان */
-    const prometheanBtn = document.getElementById("prometheanBtn");
-    prometheanBtn.addEventListener("click", () => {
-        document.body.classList.toggle("promethean-mode");
-        prometheanBtn.textContent = document.body.classList.contains("promethean-mode")
-            ? "وضع عادي"
-            : "وضع عرض بروميثيان";
+        document.getElementById("proctorDisplay").textContent =
+            this.value || "--";
     });
 </script>
 
