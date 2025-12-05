@@ -63,7 +63,7 @@
             max-width: 1100px;
             margin: 30px auto;
             padding: 0 15px;
-            position: relative; /* مرجع للصندوقين */
+            position: relative;
         }
 
         .content {
@@ -73,18 +73,18 @@
             border: 3px solid var(--gold);
         }
 
-        /* ============= صندوق التعليمات OUTSIDE CONTENT ============= */
+        /* ============= صندوق التعليمات (ثابت وعريض) ============= */
         .instructions-box {
             position: absolute;
-            left: -340px; 
+            left: -340px;
             top: 0;
             width: 330px;
-            padding: 22px;
+            padding: 20px 22px;
             border: 2px solid #b5d6d8;
             background: #e9f6f7;
             border-radius: 14px;
-            font-size: 1.6rem;
-            line-height: 1.55;
+            font-size: 1.4rem;     /* ← الحجم الجديد */
+            line-height: 1.45;     /* ← لا يخرج النص */
             color: #0b6a70;
             text-align: center;
             box-shadow: 0 0 12px rgba(0,0,0,0.15);
@@ -93,9 +93,9 @@
 
         .instructions-box b {
             display: block;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             color: #b30000;
-            font-size: 1.6rem;
+            font-size: 1.5rem;   /* ← عنوان أصغر */
             font-weight: 800;
         }
 
@@ -196,7 +196,6 @@
 
         .red-text { color: #b30000 !important; }
         .blue-text { color: #0040ff !important; }
-
     </style>
 </head>
 
@@ -216,13 +215,13 @@
     </div>
 
     <div class="logo-wrapper">
-        <img src="KFU_logo_white.png">
+        <img src="KFU_logo_white.png" alt="">
     </div>
 </header>
 
 <div class="page-wrapper">
 
-    <!-- صندوق التعليمات ثابت الآن -->
+    <!-- صندوق التعليمات ثابت -->
     <div class="instructions-box">
         <b>تعليمات هامة:</b>
         يُمنع منعًا باتًا إدخال أو استخدام الجوال، السماعات، الساعات الذكية، النظارات الذكية، أو أي أجهزة إلكترونية داخل قاعة الاختبار.<br><br>
@@ -231,7 +230,7 @@
         مع تمنياتنا للجميع بالنجاح والتوفيق.
     </div>
 
-    <!-- مربع المراقب ثابت -->
+    <!-- صندوق المراقب ثابت -->
     <div class="proctor-box">
         <div class="proctor-title">رمز المراقب</div>
         <div id="proctorDisplay" class="proctor-number-display">--</div>
@@ -239,7 +238,7 @@
         <select id="proctorCodeSelect">
             <option value="">اختر</option>
             <option>٠١</option><option>٠٢</option><option>٠٣</option>
-            <option>٠٤</option><option>٠٥</option><option>٦</option>
+            <option>٠٤</option><option>٠٥</option><option>٠٦</option>
             <option>٠٧</option><option>٠٨</option><option>٠٩</option>
             <option>١٠</option><option>١١</option><option>١٢</option>
             <option>١٣</option><option>١٤</option><option>١٥</option>
@@ -248,7 +247,7 @@
         </select>
     </div>
 
-    <!-- الإطار الداخلي -->
+    <!-- الإطار الذهبي -->
     <div class="content">
 
         <!-- عدد المقررات -->
