@@ -63,7 +63,7 @@
             max-width: 1100px;
             margin: 30px auto;
             padding: 0 15px;
-            position: relative;
+            position: relative; /* مرجع للصندوقين */
         }
 
         .content {
@@ -71,14 +71,39 @@
             padding: 28px;
             border-radius: 20px;
             border: 3px solid var(--gold);
-            position: relative; /* مرجع للعناصر المطلقة */
+        }
+
+        /* ============= صندوق التعليمات OUTSIDE CONTENT ============= */
+        .instructions-box {
+            position: absolute;
+            left: -340px; 
+            top: 0;
+            width: 330px;
+            padding: 22px;
+            border: 2px solid #b5d6d8;
+            background: #e9f6f7;
+            border-radius: 14px;
+            font-size: 1.6rem;
+            line-height: 1.55;
+            color: #0b6a70;
+            text-align: center;
+            box-shadow: 0 0 12px rgba(0,0,0,0.15);
+            box-sizing: border-box;
+        }
+
+        .instructions-box b {
+            display: block;
+            margin-bottom: 12px;
+            color: #b30000;
+            font-size: 1.6rem;
+            font-weight: 800;
         }
 
         /* ============= مربع المراقب ============= */
         .proctor-box {
             position: absolute;
-            right: -320px;     /* إبعاد عن الإطار الذهبي */
-            top: 60px;
+            right: -320px;
+            top: 0;
             width: 240px;
             padding: 16px;
             border-radius: 14px;
@@ -112,32 +137,6 @@
             border-radius: 10px;
             border: 2px solid var(--teal);
             font-size: 1.8rem;
-        }
-
-        /* ============= مربع التعليمات (ثابت وعريض) ============= */
-        .instructions-box {
-            position: absolute;
-            left: -340px;      /* إبعاد مناسب عن الإطار */
-            top: 60px;         /* ثابت مع أعلى المستطيلات تقريباً */
-            width: 320px;      /* عرض أكبر ليستوعب النص */
-            padding: 22px 22px;
-            border: 2px solid #b5d6d8;
-            background: #e9f6f7;
-            border-radius: 14px;
-            font-size: 1.6rem;
-            line-height: 1.6;
-            color: #0b6a70;
-            text-align: center;
-            box-shadow: 0 0 12px rgba(0,0,0,0.15);
-            box-sizing: border-box;
-        }
-
-        .instructions-box b {
-            color: #b30000;
-            font-size: 1.6rem;
-            font-weight: 800;
-            display: block;
-            margin-bottom: 10px;
         }
 
         /* ============= قائمة عدد المقررات ============= */
@@ -180,13 +179,8 @@
             text-align: right;
         }
 
-        .course-box label:nth-of-type(2),
-        .course-box label:nth-of-type(3) {
-            margin-top: 12px !important;
-        }
-
         .course-box .line {
-            margin-top: 2px;
+            margin-top: 3px;
             border-bottom: 2px solid #000;
             min-height: 40px;
             display: flex;
@@ -203,14 +197,6 @@
         .red-text { color: #b30000 !important; }
         .blue-text { color: #0040ff !important; }
 
-        /* للآيباد وسفاري أو الشاشات الأضيق */
-        @media (max-width: 1200px) {
-            .proctor-box, .instructions-box {
-                position: static;
-                margin: 10px auto;
-                width: 100%;
-            }
-        }
     </style>
 </head>
 
@@ -230,11 +216,39 @@
     </div>
 
     <div class="logo-wrapper">
-        <img src="KFU_logo_white.png" alt="شعار جامعة الملك فيصل">
+        <img src="KFU_logo_white.png">
     </div>
 </header>
 
 <div class="page-wrapper">
+
+    <!-- صندوق التعليمات ثابت الآن -->
+    <div class="instructions-box">
+        <b>تعليمات هامة:</b>
+        يُمنع منعًا باتًا إدخال أو استخدام الجوال، السماعات، الساعات الذكية، النظارات الذكية، أو أي أجهزة إلكترونية داخل قاعة الاختبار.<br><br>
+        يلزم إحضار أصل الهوية الوطنية (أو هوية المقيم) وإبرازها للمراقب قبل بدء الاختبار.<br><br>
+        ويُعد وجود أي جهاز أو عدم إحضار الهوية مخالفة تُطبّق بشأنها الأنظمة واللوائح المعتمدة بالجامعة.<br><br>
+        مع تمنياتنا للجميع بالنجاح والتوفيق.
+    </div>
+
+    <!-- مربع المراقب ثابت -->
+    <div class="proctor-box">
+        <div class="proctor-title">رمز المراقب</div>
+        <div id="proctorDisplay" class="proctor-number-display">--</div>
+
+        <select id="proctorCodeSelect">
+            <option value="">اختر</option>
+            <option>٠١</option><option>٠٢</option><option>٠٣</option>
+            <option>٠٤</option><option>٠٥</option><option>٦</option>
+            <option>٠٧</option><option>٠٨</option><option>٠٩</option>
+            <option>١٠</option><option>١١</option><option>١٢</option>
+            <option>١٣</option><option>١٤</option><option>١٥</option>
+            <option>١٦</option><option>١٧</option><option>١٨</option>
+            <option>١٩</option><option>٢٠</option><option>٢١</option><option>٢٢</option>
+        </select>
+    </div>
+
+    <!-- الإطار الداخلي -->
     <div class="content">
 
         <!-- عدد المقررات -->
@@ -246,32 +260,6 @@
                 <option value="3">٣</option>
                 <option value="4" selected>٤</option>
             </select>
-        </div>
-
-        <!-- مربع المراقب -->
-        <div class="proctor-box">
-            <div class="proctor-title">رمز المراقب</div>
-            <div id="proctorDisplay" class="proctor-number-display">--</div>
-
-            <select id="proctorCodeSelect">
-                <option value="">اختر</option>
-                <option>٠١</option><option>٠٢</option><option>٠٣</option>
-                <option>٠٤</option><option>٠٥</option><option>٠٦</option>
-                <option>٠٧</option><option>٠٨</option><option>٠٩</option>
-                <option>١٠</option><option>١١</option><option>١٢</option>
-                <option>١٣</option><option>١٤</option><option>١٥</option>
-                <option>١٦</option><option>١٧</option><option>١٨</option>
-                <option>١٩</option><option>٢٠</option><option>٢١</option><option>٢٢</option>
-            </select>
-        </div>
-
-        <!-- مربع التعليمات -->
-        <div class="instructions-box">
-            <b>تعليمات هامة:</b>
-            يُمنع منعًا باتًا إدخال أو استخدام الجوال، السماعات، الساعات الذكية، النظارات الذكية، أو أي أجهزة إلكترونية داخل قاعة الاختبار.<br>
-            يلزم إحضار أصل الهوية الوطنية (أو هوية المقيم) وإبرازها للمراقب قبل بدء الاختبار.<br>
-            ويُعد وجود أي جهاز أو عدم إحضار الهوية مخالفة تُطبّق بشأنها الأنظمة واللوائح المعتمدة بالجامعة.<br>
-            مع تمنياتنا للجميع بالنجاح والتوفيق.
         </div>
 
         <!-- المستطيلات -->
@@ -329,68 +317,24 @@
 <script>
     /* التحكم بعدد المقررات */
     const selectCourses = document.getElementById("coursesCountSelect");
-    const courseBoxes = document.querySelectorAll(".course-box");
+    const boxes = document.querySelectorAll(".course-box");
 
     function updateCoursesCount() {
         const count = Number(selectCourses.value);
-        courseBoxes.forEach((box, index) =>
-            box.style.display = index < count ? "block" : "none"
-        );
+        boxes.forEach((box, index) => {
+            box.style.display = (index < count) ? "block" : "none";
+        });
     }
 
-    selectCourses.addEventListener("change", updateCoursesCount);
     updateCoursesCount();
-
-    /* الأرقام العربية */
-    function toArabicIndic(str) {
-        const map = ['٠','١','٢','٣','٤','٥','٦','٧','٨','٩'];
-        return String(str).replace(/[0-9]/g, d => map[d]);
-    }
-
-    /* التاريخ والوقت */
-    function updateDateTime() {
-        const now = new Date();
-
-        const dayNames = ["الأحد","الاثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"];
-        document.getElementById("dayName").textContent = "اليوم: " + dayNames[now.getDay()];
-
-        // هجري
-        try {
-            const fmt = new Intl.DateTimeFormat("ar-SA-u-ca-islamic-umalqura",
-                { day: "2-digit", month: "2-digit", year: "numeric" }
-            );
-            const p = fmt.formatToParts(now);
-            const d = p.find(x => x.type === "day")?.value;
-            const m = p.find(x => x.type === "month")?.value;
-            const y = p.find(x => x.type === "year")?.value;
-            document.getElementById("hijriDate").textContent =
-                "الهجري: " + d + " / " + m + " / " + y + " هـ";
-        } catch {}
-
-        // ميلادي
-        const gd = String(now.getDate()).padStart(2, "0");
-        const gm = String(now.getMonth() + 1).padStart(2, "0");
-        const gy = now.getFullYear();
-        document.getElementById("gregDate").textContent =
-            "الميلادي: " + toArabicIndic(gd) + " / " + toArabicIndic(gm) + " / " + toArabicIndic(gy) + " م";
-
-        // وقت
-        let h = now.getHours();
-        let m2 = String(now.getMinutes()).padStart(2, "0");
-        const ampm = h >= 12 ? "م" : "ص";
-        h = h % 12 || 12;
-        document.getElementById("timeValue").textContent =
-            "الوقت: " + toArabicIndic(h) + ":" + toArabicIndic(m2) + " " + ampm;
-    }
-
-    setInterval(updateDateTime, 1000);
-    updateDateTime();
+    selectCourses.addEventListener("change", updateCoursesCount);
 
     /* رمز المراقب */
-    document.getElementById("proctorCodeSelect").addEventListener("change", function () {
-        document.getElementById("proctorDisplay").textContent =
-            this.value || "--";
-    });
+    document.getElementById("proctorCodeSelect")
+        .addEventListener("change", function() {
+            document.getElementById("proctorDisplay").textContent =
+                this.value || "--";
+        });
 </script>
 
 </body>
