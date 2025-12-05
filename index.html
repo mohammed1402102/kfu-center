@@ -83,8 +83,8 @@
             border: 2px solid #b5d6d8;
             background: #e9f6f7;
             border-radius: 14px;
-            font-size: 1.4rem;     /* ← الحجم الجديد */
-            line-height: 1.45;     /* ← لا يخرج النص */
+            font-size: 1.4rem;     /* خط أصغر ليتسع النص */
+            line-height: 1.45;
             color: #0b6a70;
             text-align: center;
             box-shadow: 0 0 12px rgba(0,0,0,0.15);
@@ -95,7 +95,7 @@
             display: block;
             margin-bottom: 10px;
             color: #b30000;
-            font-size: 1.5rem;   /* ← عنوان أصغر */
+            font-size: 1.5rem;   /* عنوان أصغر قليلاً */
             font-weight: 800;
         }
 
@@ -328,12 +328,61 @@
     updateCoursesCount();
     selectCourses.addEventListener("change", updateCoursesCount);
 
-    /* رمز المراقب */
+    /* عرض رمز المراقب */
     document.getElementById("proctorCodeSelect")
         .addEventListener("change", function() {
             document.getElementById("proctorDisplay").textContent =
                 this.value || "--";
         });
+
+    /* تحويل الأرقام إلى عربية */
+    function toArabicIndic(str) {
+        const map = ['٠','١','٢','٣','٤','٥','٦','٧','٨','٩'];
+        return String(str).replace(/[0-9]/g, d => map[d]);
+    }
+
+    /* التاريخ والوقت */
+    function updateDateTime() {
+        const now = new Date();
+
+        const dayNames = ["الأحد","الاثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"];
+        document.getElementById("dayName").textContent =
+            "اليوم: " + dayNames[now.getDay()];
+
+        // التاريخ الهجري
+        try {
+            const hijri = new Intl.DateTimeFormat("ar-SA-u-ca-islamic-umalqura", {
+                day: "2-digit",
+                month: "2-digit",
+                year: "numeric"
+            }).format(now);
+
+            document.getElementById("hijriDate").textContent =
+                "الهجري: " + hijri + " هـ";
+        } catch {
+            document.getElementById("hijriDate").textContent = "الهجري: ـــــ";
+        }
+
+        // التاريخ الميلادي
+        const d = now.getDate().toString().padStart(2, "0");
+        const m = (now.getMonth() + 1).toString().padStart(2, "0");
+        const y = now.getFullYear();
+
+        document.getElementById("gregDate").textContent =
+            "الميلادي: " + toArabicIndic(d) + " / " + toArabicIndic(m) + " / " + toArabicIndic(y) + " م";
+
+        // الوقت
+        let h = now.getHours();
+        let min = now.getMinutes().toString().padStart(2, "0");
+        const ampm = h >= 12 ? "م" : "ص";
+        h = h % 12 || 12;
+
+        document.getElementById("timeValue").textContent =
+            "الوقت: " + toArabicIndic(h) + ":" + toArabicIndic(min) + " " + ampm;
+    }
+
+    updateDateTime();
+    setInterval(updateDateTime, 1000);
 </script>
 
 </body>
