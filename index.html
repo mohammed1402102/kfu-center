@@ -73,7 +73,7 @@
             border: 3px solid var(--gold);
         }
 
-        /* ============= صندوق التعليمات ============= */
+        /* ============= صندوق التعليمات (ثابت وعريض) ============= */
         .instructions-box {
             position: absolute;
             left: -340px;
@@ -83,7 +83,7 @@
             border: 2px solid #b5d6d8;
             background: #e9f6f7;
             border-radius: 14px;
-            font-size: 1.4rem;
+            font-size: 1.4rem;     /* خط أصغر ليتسع النص */
             line-height: 1.45;
             color: #0b6a70;
             text-align: center;
@@ -95,11 +95,11 @@
             display: block;
             margin-bottom: 10px;
             color: #b30000;
-            font-size: 1.5rem;
+            font-size: 1.5rem;   /* عنوان أصغر قليلاً */
             font-weight: 800;
         }
 
-        /* ============= صندوق المراقب ============= */
+        /* ============= مربع المراقب ============= */
         .proctor-box {
             position: absolute;
             right: -320px;
@@ -196,15 +196,6 @@
 
         .red-text { color: #b30000 !important; }
         .blue-text { color: #0040ff !important; }
-
-
-        /* ============= تكبير للعرض الكبير (بروميثيان / 27 بوصة / 32 بوصة) ============= */
-        @media (min-width: 1600px) {
-            .page-wrapper {
-                transform: scale(1.15);
-                transform-origin: top center;
-            }
-        }
     </style>
 </head>
 
@@ -322,7 +313,6 @@
     </div>
 </div>
 
-<!-- سكربت التحكم -->
 <script>
     /* التحكم بعدد المقررات */
     const selectCourses = document.getElementById("coursesCountSelect");
@@ -368,9 +358,9 @@
             }).format(now);
 
             document.getElementById("hijriDate").textContent =
-                "الهجري: " + hijri + " هـ";
+                "الهجري: " + hijri + " ";
         } catch {
-            document.getElementById("hijriDate").textContent = "الهجري: ـــــ";
+            document.getElementById("hijriDate").textContent = "الهجري:";
         }
 
         // التاريخ الميلادي
