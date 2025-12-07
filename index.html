@@ -75,7 +75,7 @@
         /* ============= صندوق المراقب ============= */
         .proctor-box {
             position: absolute;
-            right: -320px; /* خارج الإطار الذهبي بمسافة مريحة */
+            right: -300px; /* تم إبعاده قليلاً عن الإطار الذهبي */
             top: 0;
             width: 240px;
             padding: 16px;
@@ -214,6 +214,26 @@
             margin-top: 10px;
             text-align: center;
             font-weight: 700;
+        }
+
+        /* ============= تكبير بروميثيان (شاشات كبيرة) ============= */
+        @media (min-width: 1800px) {
+            .page-wrapper {
+                transform: scale(1.30);
+                transform-origin: top center;
+            }
+        }
+
+        /* ============= Auto-Scale لشاشات أصغر ============= */
+        @media (max-width: 1700px) {
+            .page-wrapper {
+                transform: scale(0.82);
+                transform-origin: top center;
+            }
+            .proctor-box {
+                right: -270px; /* إبعاده قليلاً أيضاً في الوضع المصغّر */
+                transform: scale(0.95);
+            }
         }
     </style>
 </head>
