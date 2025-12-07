@@ -75,7 +75,7 @@
         /* ============= صندوق المراقب ============= */
         .proctor-box {
             position: absolute;
-            right: -320px;
+            right: -260px; /* تم تقريب الصندوق للداخل ليتناسب مع بروميثيان */
             top: 0;
             width: 240px;
             padding: 16px;
@@ -231,7 +231,7 @@
                 transform-origin: top center;
             }
             .proctor-box {
-                right: -260px;
+                right: -230px;
                 transform: scale(0.95);
             }
         }
@@ -260,7 +260,7 @@
 
 <div class="page-wrapper">
 
-    <!-- ========== صندوق المراقب (خارج التبويبات) ========== -->
+    <!-- صندوق المراقب -->
     <div class="proctor-box">
         <div class="proctor-title">رمز المراقب</div>
         <div id="proctorDisplay" class="proctor-number-display">--</div>
@@ -302,13 +302,13 @@
 
     <div class="content">
 
-        <!-- ========== التبويبات ========== -->
+        <!-- التبويبات -->
         <div class="tabs">
             <button id="tabMainBtn" class="tab-btn active">المقررات</button>
             <button id="tabInstructionsBtn" class="tab-btn">التعليمات</button>
         </div>
 
-        <!-- ========== تبويب المقررات ========== -->
+        <!-- تبويب المقررات -->
         <div id="mainPanel">
             <div class="select-container">
                 عدد المقررات:
@@ -367,10 +367,10 @@
             </div>
         </div>
 
-        <!-- ========== تبويب التعليمات ========== -->
+        <!-- تبويب التعليمات -->
         <div id="instructionsPanel" class="instructions-panel">
             <div class="instructions-card">
-                <b>عزيزي الطالب/ عزيزتي الطالبة:</b>
+                <b>  تعليمات هامة:</b>
                 السلام عليكم ورحمة الله وبركاته<br><br>
                 تؤكد عمادة التعلم الإلكتروني وتقنية المعلومات بجامعة الملك فيصل على أبنائها طلبة برامج التعلم الإلكتروني
                 والتعليم عن بُعد مراعاة الالتزام بالأنظمة والتعليمات الخاصة بحسن سير الاختبارات، ومنع حيازة أو استخدام
